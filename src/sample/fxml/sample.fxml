@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.MainController">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <TextField fx:id="txtcoast" promptText="максимальная цена">
+               <HBox.margin>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </HBox.margin>
+            </TextField>
+            <ComboBox fx:id="serviceType" prefWidth="150.0" promptText="тип услуги">
+               <HBox.margin>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </HBox.margin>
+            </ComboBox>
+            <ComboBox fx:id="sex" prefWidth="150.0" promptText="пол">
+               <HBox.margin>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </HBox.margin>
+            </ComboBox>
+         </children>
+      </HBox>
+      <HBox prefHeight="0.0" prefWidth="600.0">
+         <children>
+            <Button fx:id="submit" mnemonicParsing="false" onAction="#mainShow" text="Подтвердить выбор">
+               <HBox.margin>
+                  <Insets left="30.0" right="270.0" top="-20.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="reset" mnemonicParsing="false" onAction="#mainreset" text="Сбросить фильтры">
+               <HBox.margin>
+                  <Insets top="-25.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox fx:id="item1" prefHeight="84.0" prefWidth="600.0" visible="false">
+         <children>
+            <ImageView fx:id="imgitem1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </HBox.margin>
+            </ImageView>
+            <TextArea fx:id="textitem1" editable="false" prefHeight="104.0" prefWidth="200.0">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="30.0" top="10.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+               </padding>
+            </TextArea>
+            <Button fx:id="butitem1" mnemonicParsing="false" onAction="#show_dialog" text="Описание">
+               <HBox.margin>
+                  <Insets top="50.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox fx:id="item2" prefHeight="100.0" prefWidth="200.0" visible="false">
+         <children>
+            <ImageView fx:id="imgitem2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </HBox.margin>
+            </ImageView>
+            <TextArea fx:id="textitem2" editable="false" prefHeight="200.0" prefWidth="200.0">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="30.0" top="10.0" />
+               </HBox.margin>
+            </TextArea>
+            <Button fx:id="butitem2" mnemonicParsing="false" onAction="#show_dialog" text="Описание">
+               <HBox.margin>
+                  <Insets top="50.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox fx:id="item3" prefHeight="100.0" prefWidth="200.0" visible="false">
+         <children>
+            <ImageView fx:id="imgitem3" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </ImageView>
+            <TextArea fx:id="textitem3" editable="false" prefHeight="200.0" prefWidth="200.0">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="30.0" top="10.0" />
+               </HBox.margin>
+            </TextArea>
+            <Button fx:id="butitem3" mnemonicParsing="false" onAction="#show_dialog" text="Описание">
+               <HBox.margin>
+                  <Insets top="50.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</VBox>
