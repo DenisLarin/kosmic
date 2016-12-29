@@ -132,7 +132,10 @@ public class MainController {
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(mainWindow);
         }
+        dialogController.clean();
         dialogStage.setTitle("Описние услуги " + collectionKosmikServises.getKosmikServisesArrayList().get(position).getName());
+        dialogController.setAbout(collectionKosmikServises.getKosmikServisesArrayList().get(position).getAbout());
+        dialogController.setLabel(collectionKosmikServises.getKosmikServisesArrayList().get(position).getName());
         dialogStage.showAndWait();
     }
 

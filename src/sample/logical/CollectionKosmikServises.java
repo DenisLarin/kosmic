@@ -34,7 +34,6 @@ public class CollectionKosmikServises {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        System.out.println(kosmikServisesArrayList.size());
     }
 
     public ArrayList<KosmikServises> getKosmikServisesArrayList() {
