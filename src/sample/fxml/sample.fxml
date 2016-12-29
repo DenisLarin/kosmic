@@ -45,7 +45,7 @@
          <children>
             <ImageView fx:id="imgitem1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="10.0" top="10.0" />
                </HBox.margin>
             </ImageView>
             <TextArea fx:id="textitem1" editable="false" prefHeight="104.0" prefWidth="200.0">
@@ -67,7 +67,7 @@
          <children>
             <ImageView fx:id="imgitem2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
-                  <Insets bottom="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="10.0" top="10.0" />
                </HBox.margin>
             </ImageView>
             <TextArea fx:id="textitem2" editable="false" prefHeight="200.0" prefWidth="200.0">
@@ -86,7 +86,7 @@
          <children>
             <ImageView fx:id="imgitem3" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
-                  <Insets />
+                  <Insets bottom="10.0" left="10.0" />
                </HBox.margin>
             </ImageView>
             <TextArea fx:id="textitem3" editable="false" prefHeight="200.0" prefWidth="200.0">

@@ -6,12 +6,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sample.logical.CollectionKosmikServises;
 
@@ -64,6 +66,12 @@ public class MainController {
     private ObservableList<String> list = FXCollections.observableArrayList("Бровь", "Макияж", "Ногти", "Волосы");
     private ObservableList<String> sexlist = FXCollections.observableArrayList("М", "Ж");
     private CollectionKosmikServises collectionKosmikServises;
+    private int[] elements = {-1, -1, -1};
+    private Stage mainWindow;
+
+    public void setMainWindow(Stage mainWindow) {
+        this.mainWindow = mainWindow;
+    }
 
     @FXML
     public void initialize() {
@@ -98,25 +106,106 @@ public class MainController {
 
     public void show_dialog(ActionEvent actionEvent) {
         Button clickB = (Button) actionEvent.getSource();
+        int position;
         switch (clickB.getId()) {
             case "butitem1":
-
+                position = elements[0];
+                show(position);
+                break;
+            case "butitem2":
+                position = elements[1];
+                show(position);
+                break;
+            case "butitem3":
+                position = elements[2];
+                show(position);
                 break;
 
         }
     }
 
-    public void mainShow(ActionEvent actionEvent) throws MalformedURLException {
-        item1.setVisible(true);
-        imgitem1.setImage(collectionKosmikServises.getKosmikServisesArrayList().get(0).getImage());
+    private void show(int position) {
+        if(dialogStage == null){
+            dialogStage = new Stage();
+            dialogStage.setResizable(false);
+            dialogStage.setScene(new Scene(fxmlDialog));
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(mainWindow);
+        }
+        dialogStage.setTitle("Описние услуги " + collectionKosmikServises.getKosmikServisesArrayList().get(position).getName());
+        dialogStage.showAndWait();
+    }
 
-        textitem1.setText("Название услуги: " + collectionKosmikServises.getKosmikServisesArrayList().get(0).getName() + "\n" +
-                "Стоимость услуги: " + collectionKosmikServises.getKosmikServisesArrayList().get(0).getCoast());
+    public void mainShow(ActionEvent actionEvent) throws MalformedURLException {
+        if (txtcoast.getText().equals("Введите стоимость")) return;
+        if (serviceType.getValue() == null) return;
+        if (sex.getValue() == null) return;
+        int coast = Integer.parseInt(txtcoast.getText());
+        String type = serviceType.getValue();
+        String sexL = sex.getValue();
+        serviceType.setDisable(true);
+        txtcoast.setDisable(true);
+        sex.setDisable(true);
+        for (int i = 0; i < collectionKosmikServises.getKosmikServisesArrayList().size(); i++) {
+            if (Integer.parseInt(collectionKosmikServises.getKosmikServisesArrayList().get(i).getCoast()) <= coast && type.equals(collectionKosmikServises.getKosmikServisesArrayList().get(i).getType()) && sexL.equals(collectionKosmikServises.getKosmikServisesArrayList().get(i).getSex())) {
+                if (!item1.isVisible()) {
+                    item1.setVisible(true);
+                    imgitem1.setImage(collectionKosmikServises.getKosmikServisesArrayList().get(i).getImage());
+                    textitem1.setText("Название услуги: " + collectionKosmikServises.getKosmikServisesArrayList().get(i).getName() + "\n" +
+                            "Стоимость услуги: " + collectionKosmikServises.getKosmikServisesArrayList().get(i).getCoast());
+                    elements[0] = i;
+                    continue;
+                } else if (!item2.isVisible()) {
+                    item2.setVisible(true);
+                    imgitem2.setImage(collectionKosmikServises.getKosmikServisesArrayList().get(i).getImage());
+                    textitem2.setText("Название услуги: " + collectionKosmikServises.getKosmikServisesArrayList().get(i).getName() + "\n" +
+                            "Стоимость услуги: " + collectionKosmikServises.getKosmikServisesArrayList().get(i).getCoast());
+                    elements[1] = i;
+                    continue;
+                } else if (!item3.isVisible()) {
+                    item3.setVisible(true);
+                    imgitem3.setImage(collectionKosmikServises.getKosmikServisesArrayList().get(i).getImage());
+                    textitem3.setText("Название услуги: " + collectionKosmikServises.getKosmikServisesArrayList().get(i).getName() + "\n" +
+                            "Стоимость услуги: " + collectionKosmikServises.getKosmikServisesArrayList().get(i).getCoast());
+                    elements[2] = i;
+                    continue;
+                }
+            }
+        }
+        if (elements[0] == -1) {
+            item1.setVisible(true);
+            imgitem1.setVisible(false);
+            butitem1.setVisible(false);
+            textitem1.setText("Не найдено услуг");
+        }
     }
 
     public void mainreset(ActionEvent actionEvent) {
-        txtcoast.setText("введите стоимость");
-        serviceType.setValue("Тип услуги");
-        sex.setValue("Пол");
+        txtcoast.setText("Введите стоимость");
+        serviceType.setValue("тип услуги");
+        sex.setValue("пол");
+        if (item1.isVisible()) {
+            item1.setVisible(false);
+            imgitem1.setImage(null);
+            textitem1.setText("");
+        }
+        if (item2.isVisible()) {
+            item2.setVisible(false);
+            imgitem2.setImage(null);
+            textitem2.setText("");
+        }
+        if (item3.isVisible()) {
+            item3.setVisible(false);
+            imgitem3.setImage(null);
+            textitem3.setText("");
+        }
+        for (int i = 0; i < elements.length; i++) {
+            elements[i] = -1;
+        }
+        sex.setDisable(false);
+        serviceType.setDisable(false);
+        imgitem1.setVisible(true);
+        butitem1.setVisible(true);
+        txtcoast.setDisable(false);
     }
 }
